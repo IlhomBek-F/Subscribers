@@ -16,7 +16,7 @@ func UpdateUser(db *gorm.DB, user model.User) error {
 
 func GetUserById(db *gorm.DB, id string) (model.User, error) {
 	var user model.User
-	result := db.First(&user, "id = ?", id)
+	result := db.First(&user, "user_id = ?", id)
 
 	if result.Error != nil {
 		return model.User{}, result.Error
@@ -38,5 +38,5 @@ func GetUsers(db *gorm.DB, users *[]model.User) error {
 }
 
 func DeleteUser(db *gorm.DB, id string) error {
-	return db.Delete(&model.User{}, "id = ?", id).Error
+	return db.Delete(&model.User{}, "user_id = ?", id).Error
 }

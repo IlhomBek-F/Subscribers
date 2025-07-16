@@ -64,19 +64,15 @@ func (s Server) UpdateUser(e echo.Context) error {
 // @Tags         subscriber
 // @Accept       json
 // @Produce      json
-// @Param        id   path      int  true  "User ID"
+// @Param        user_id path string  true  "User ID"
 // @Success      200
-// @Router       /api/subscriber/{id} [get]
+// @Router       /api/subscriber/{user_id} [get]
 func (s Server) GetUserById(e echo.Context) error {
 	id := e.Param("id")
 
 	user, err := repository.GetUserById(s.DB, id)
 
 	if err != nil {
-		return e.JSON(http.StatusInternalServerError, model.ErrorResponse{Status: http.StatusInternalServerError, Message: "Internal server error"})
-	}
-
-	if user.UserId == "" {
 		return e.JSON(http.StatusNotFound, model.ErrorResponse{Status: http.StatusNotFound, Message: "User not found"})
 	}
 
@@ -107,8 +103,8 @@ func (s Server) GetUsers(e echo.Context) error {
 // @Tags         subscriber
 // @Accept       json
 // @Produce      json
-// @Param        user_id path string true "User ID"
-// @Param        service_name path string true "Service name"
+// @Param        user_id query string true "User ID"
+// @Param        service_name query string true "Service name"
 // @Success      200
 // @Router       /api/subscriber/cost [get]
 func (s Server) CalculateSubsCost(e echo.Context) error {
@@ -133,7 +129,7 @@ func (s Server) CalculateSubsCost(e echo.Context) error {
 // @Produce      json
 // @Param        user_id path string true "User ID"
 // @Success      200
-// @Router       /api/subscriber/delete/{id} [delete]
+// @Router       /api/subscriber/delete/{user_id} [delete]
 func (s Server) DeleteUser(e echo.Context) error {
 	id := e.Param("id")
 

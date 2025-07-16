@@ -31,7 +31,7 @@ func (s Server) RegisterRoute() http.Handler {
 
 	subscriberGroup.GET("/list", server.GetUsers)
 	subscriberGroup.POST("/create", server.CreateNewUser)
-	subscriberGroup.PUT("/update/:id", server.UpdateUser)
+	subscriberGroup.PUT("/update", server.UpdateUser)
 	subscriberGroup.DELETE("/delete/:id", server.DeleteUser)
 	subscriberGroup.GET("/:id", server.GetUserById)
 	subscriberGroup.GET("/cost", server.CalculateSubsCost)

@@ -1,7 +1,8 @@
-basePath: /api/v1
 definitions:
   model.User:
     properties:
+      id:
+        type: string
       price:
         type: integer
       service_name:
@@ -11,22 +12,16 @@ definitions:
       user_id:
         type: string
     type: object
-host: petmanagement.com
+host: localhost:3000
 info:
   contact:
-    email: support@petmanagement.com
     name: API Support Team
-    url: http://petmanagement.com/support
   description: A comprehensive API for managing pets, offering endpoints for creation,
     update, deletion, and retrieval of pet data.
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://petmanagement.com/terms
   title: Subscribers API
   version: "1.0"
 paths:
-  /api/subscriber/{id}:
+  /api/subscriber/{user_id}:
     get:
       consumes:
       - application/json
@@ -34,9 +29,9 @@ paths:
       parameters:
       - description: User ID
         in: path
-        name: id
+        name: user_id
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
@@ -52,12 +47,12 @@ paths:
       description: Get users
       parameters:
       - description: User ID
-        in: path
+        in: query
         name: user_id
         required: true
         type: string
       - description: Service name
-        in: path
+        in: query
         name: service_name
         required: true
         type: string
@@ -87,7 +82,7 @@ paths:
           description: OK
       tags:
       - subscriber
-  /api/subscriber/delete/{id}:
+  /api/subscriber/delete/{user_id}:
     delete:
       consumes:
       - application/json

@@ -3,14 +3,8 @@
 //  @title                       Subscribers API
 //  @version                     1.0
 //  @description                 A comprehensive API for managing pets, offering endpoints for creation, update, deletion, and retrieval of pet data.
-//  @termsOfService              http://petmanagement.com/terms
 //  @contact.name                API Support Team
-//  @contact.url                 http://petmanagement.com/support
-//  @contact.email               support@petmanagement.com
-//  @license.name                Apache 2.0
-//  @license.url                 http://www.apache.org/licenses/LICENSE-2.0.html
-//  @host                        petmanagement.com
-//  @BasePath                    /api/v1
+//  @host                        localhost:3000
 //  @schemes                     http https
 //  @securityDefinitions.apiKey  JWT
 //  @in                          header

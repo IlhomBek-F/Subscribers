@@ -7,20 +7,12 @@
     "info": {
         "description": "A comprehensive API for managing pets, offering endpoints for creation, update, deletion, and retrieval of pet data.",
         "title": "Subscribers API",
-        "termsOfService": "http://petmanagement.com/terms",
         "contact": {
-            "name": "API Support Team",
-            "url": "http://petmanagement.com/support",
-            "email": "support@petmanagement.com"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "name": "API Support Team"
         },
         "version": "1.0"
     },
-    "host": "petmanagement.com",
-    "basePath": "/api/v1",
+    "host": "localhost:3000",
     "paths": {
         "/api/subscriber/cost": {
             "get": {
@@ -39,14 +31,14 @@
                         "type": "string",
                         "description": "User ID",
                         "name": "user_id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     },
                     {
                         "type": "string",
                         "description": "Service name",
                         "name": "service_name",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -87,7 +79,7 @@
                 }
             }
         },
-        "/api/subscriber/delete/{id}": {
+        "/api/subscriber/delete/{user_id}": {
             "delete": {
                 "description": "Delete user",
                 "consumes": [
@@ -164,7 +156,7 @@
                 }
             }
         },
-        "/api/subscriber/{id}": {
+        "/api/subscriber/{user_id}": {
             "get": {
                 "description": "Get user by ID",
                 "consumes": [
@@ -179,9 +171,9 @@
                 "summary": "Show a user",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "User ID",
-                        "name": "id",
+                        "name": "user_id",
                         "in": "path",
                         "required": true
                     }
@@ -198,6 +190,9 @@
         "model.User": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "price": {
                     "type": "integer"
                 },

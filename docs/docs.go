@@ -9,15 +9,8 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://petmanagement.com/terms",
         "contact": {
-            "name": "API Support Team",
-            "url": "http://petmanagement.com/support",
-            "email": "support@petmanagement.com"
-        },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "name": "API Support Team"
         },
         "version": "{{.Version}}"
     },
@@ -41,14 +34,14 @@ const docTemplate = `{
                         "type": "string",
                         "description": "User ID",
                         "name": "user_id",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     },
                     {
                         "type": "string",
                         "description": "Service name",
                         "name": "service_name",
-                        "in": "path",
+                        "in": "query",
                         "required": true
                     }
                 ],
@@ -89,7 +82,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/subscriber/delete/{id}": {
+        "/api/subscriber/delete/{user_id}": {
             "delete": {
                 "description": "Delete user",
                 "consumes": [
@@ -166,7 +159,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/api/subscriber/{id}": {
+        "/api/subscriber/{user_id}": {
             "get": {
                 "description": "Get user by ID",
                 "consumes": [
@@ -181,9 +174,9 @@ const docTemplate = `{
                 "summary": "Show a user",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "User ID",
-                        "name": "id",
+                        "name": "user_id",
                         "in": "path",
                         "required": true
                     }
@@ -200,6 +193,9 @@ const docTemplate = `{
         "model.User": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
                 "price": {
                     "type": "integer"
                 },
@@ -228,8 +224,8 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "petmanagement.com",
-	BasePath:         "/api/v1",
+	Host:             "localhost:3000",
+	BasePath:         "",
 	Schemes:          []string{"http", "https"},
 	Title:            "Subscribers API",
 	Description:      "A comprehensive API for managing pets, offering endpoints for creation, update, deletion, and retrieval of pet data.",
