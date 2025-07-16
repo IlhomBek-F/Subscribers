@@ -33,6 +33,7 @@ func (s Server) RegisterRoute() http.Handler {
 	subscriberGroup.PUT("/update/:id", server.UpdateUser)
 	subscriberGroup.DELETE("/delete/:id", server.DeleteUser)
 	subscriberGroup.GET("/:id", server.GetUserById)
+	subscriberGroup.GET("/cost", server.CalculateSubsCost)
 
 	return e
 }

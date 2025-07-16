@@ -50,7 +50,7 @@ func (s Server) GetUserById(e echo.Context) error {
 		return e.JSON(http.StatusInternalServerError, model.ErrorResponse{Status: http.StatusInternalServerError, Message: "Internal server error"})
 	}
 
-	if user.ID == "" {
+	if user.UserId == "" {
 		return e.JSON(http.StatusNotFound, model.ErrorResponse{Status: http.StatusNotFound, Message: "User not found"})
 	}
 
@@ -67,6 +67,21 @@ func (s Server) GetUsers(e echo.Context) error {
 	}
 
 	return e.JSON(http.StatusOK, model.SuccessResponse{Status: http.StatusOK, Message: "Success", Data: users})
+}
+
+func (s Server) CalculateSubsCost(e echo.Context) error {
+	paramValues := e.QueryParams()
+
+	userId := paramValues.Get("user_id")
+	serviceName := paramValues.Get("service_name")
+
+	cost, err := repository.CalculateSubsCost(s.DB, userId, serviceName)
+
+	if err != nil {
+		return e.JSON(http.StatusInternalServerError, model.ErrorResponse{Status: http.StatusInternalServerError, Message: "Internal server error"})
+	}
+
+	return e.JSON(http.StatusOK, model.SuccessResponse{Status: http.StatusOK, Message: "Success", Data: cost})
 }
 
 func (s Server) DeleteUser(e echo.Context) error {
