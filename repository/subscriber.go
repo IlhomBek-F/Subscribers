@@ -28,7 +28,7 @@ func GetUserById(db *gorm.DB, id string) (model.User, error) {
 func CalculateSubsCost(db *gorm.DB, userId string, serviceName string) (int, error) {
 	var result int
 
-	q := db.Model(&model.User{}).Select("SUM(price) as total").Where("user_id	 = ? AND service_name = ?", userId, serviceName).Scan(&result)
+	q := db.Model(&model.User{}).Select("SUM(price) as total").Where("user_id = ? AND service_name = ?", userId, serviceName).Scan(&result)
 
 	return result, q.Error
 }

@@ -1,0 +1,149 @@
+basePath: /api/v1
+definitions:
+  model.User:
+    properties:
+      price:
+        type: integer
+      service_name:
+        type: string
+      start_date:
+        type: string
+      user_id:
+        type: string
+    type: object
+host: petmanagement.com
+info:
+  contact:
+    email: support@petmanagement.com
+    name: API Support Team
+    url: http://petmanagement.com/support
+  description: A comprehensive API for managing pets, offering endpoints for creation,
+    update, deletion, and retrieval of pet data.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://petmanagement.com/terms
+  title: Subscribers API
+  version: "1.0"
+paths:
+  /api/subscriber/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get user by ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Show a user
+      tags:
+      - subscriber
+  /api/subscriber/cost:
+    get:
+      consumes:
+      - application/json
+      description: Get users
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: Service name
+        in: path
+        name: service_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - subscriber
+  /api/subscriber/create:
+    post:
+      consumes:
+      - application/json
+      description: Create new user
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - subscriber
+  /api/subscriber/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user
+      parameters:
+      - description: User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - subscriber
+  /api/subscriber/list:
+    get:
+      consumes:
+      - application/json
+      description: Get users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - subscriber
+  /api/subscriber/update:
+    put:
+      consumes:
+      - application/json
+      description: Update user
+      parameters:
+      - description: User data
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      tags:
+      - subscriber
+schemes:
+- http
+- https
+securityDefinitions:
+  JWT:
+    description: JWT security accessToken. Please add it in the format "Bearer {AccessToken}"
+      to authorize your requests.
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

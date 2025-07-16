@@ -1,3 +1,22 @@
+// Swagger
+//
+//  @title                       Subscribers API
+//  @version                     1.0
+//  @description                 A comprehensive API for managing pets, offering endpoints for creation, update, deletion, and retrieval of pet data.
+//  @termsOfService              http://petmanagement.com/terms
+//  @contact.name                API Support Team
+//  @contact.url                 http://petmanagement.com/support
+//  @contact.email               support@petmanagement.com
+//  @license.name                Apache 2.0
+//  @license.url                 http://www.apache.org/licenses/LICENSE-2.0.html
+//  @host                        petmanagement.com
+//  @BasePath                    /api/v1
+//  @schemes                     http https
+//  @securityDefinitions.apiKey  JWT
+//  @in                          header
+//  @name                        Authorization
+//  @description                 JWT security accessToken. Please add it in the format "Bearer {AccessToken}" to authorize your requests.
+
 package main
 
 import (
@@ -6,7 +25,10 @@ import (
 	"log"
 	"net/http"
 	"os/signal"
+	_ "subscribers/docs"
 	database "subscribers/internal"
+	_ "subscribers/model"
+
 	"syscall"
 	"time"
 )

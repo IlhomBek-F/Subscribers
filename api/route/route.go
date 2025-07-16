@@ -6,6 +6,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	echoSwagger "github.com/swaggo/echo-swagger" // add this import
 	"golang.org/x/time/rate"
 	"gorm.io/gorm"
 )
@@ -35,6 +36,7 @@ func (s Server) RegisterRoute() http.Handler {
 	subscriberGroup.GET("/:id", server.GetUserById)
 	subscriberGroup.GET("/cost", server.CalculateSubsCost)
 
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	return e
 }
 
